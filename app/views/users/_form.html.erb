@@ -1,0 +1,15 @@
+<% provide(:text) %>
+<div class="row">
+  <div class=" col-6 form-group">
+    <%= form_with model:@user do |f| %>
+     <%= render 'shared/errors', object: f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name , class:"form-control mt-10"%>
+    <%= f.label :email %>
+    <%= f.email_field :email,class:"form-control mt-10" %>
+    <%= f.label :password %>
+    <%= f.password_field :password,class:"form-control" %>
+    <%= f.submit yield(:button_text), class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
