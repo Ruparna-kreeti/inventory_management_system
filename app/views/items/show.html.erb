@@ -6,3 +6,23 @@
 <p><%= @item.notes %></p>
 <p><%= @item.buffer_quantity %></p>
 <%= link_to "Download Attached File", @item.file, class: "btn btn-primary", target: "_blank" if @item.file.attached? %>
+
+<h3>Employees having this item</h3>
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Employee</th>
+      <th scope="col" colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @assigned_employees.each do |assigned| %>
+       <tr>
+        <td><%= assigned.employee.name %></td>
+        <td><%= assigned.employee.email %></td>
+        <td><%= link_to "Delete",assigned,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

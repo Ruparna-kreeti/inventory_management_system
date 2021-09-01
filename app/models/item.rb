@@ -6,6 +6,8 @@ class Item < ApplicationRecord
 
   has_one_attached :file
 
+  has_and_belongs_to_many :employees
+
   validates :notes,presence: true, length: {maximum: 250}
   validates :buffer_quantity,presence: true
 
@@ -13,6 +15,10 @@ class Item < ApplicationRecord
 
   def name_downcase
     self.name.downcase!
+  end
+
+  def item_fullname
+    "#{brand.name} #{category.name} #{name}"
   end
 
 end

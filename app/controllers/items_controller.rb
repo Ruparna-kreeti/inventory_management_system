@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
   def show
     @item=Item.find(params[:id])
+    @assigned_employees=EmployeesItem.where(item_id:@item.id)
   end
 
   def new
@@ -37,8 +38,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    Item.find(params[:id]).destroy
-    redirect_to items_path;flash[:success]="Item destroyed successfully"
+    if Item.find(params[:id]).employees.count < 1
+      Item.find(params[:id]).destroy
+      redirect_to items_path;flash[:success]="Item deleted successfully"
+    else
+      redirect_to items_path;flash[:danger]="Item assigned to employee,cannot be deleted"
+    end
   end
 
   private

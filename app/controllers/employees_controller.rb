@@ -6,6 +6,7 @@ class EmployeesController < ApplicationController
 
   def show
     @employee=Employee.find(params[:id])
+    @assigned_items=EmployeesItem.where(employee_id:@employee.id)
   end
 
   def new

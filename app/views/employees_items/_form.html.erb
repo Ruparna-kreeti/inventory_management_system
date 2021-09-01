@@ -1,0 +1,14 @@
+<div class="row">
+  <div class=" col-6 form-group">
+    <%= form_with model: @employees_item do |f| %>
+      <%= render 'shared/errors', object: f.object %>
+      <% options = options_from_collection_for_select(@employees, 'id', 'email') %>
+      <%= f.select :employee_id,  options %>
+      <% options = options_from_collection_for_select(@items, 'id','item_fullname') %>
+      <%= f.select :item_id,  options %>
+      <%= f.label :status %>
+      <%= f.select :status,[['working',true], ['not working',false]], class:"form-control mt-10" %>
+      <%= f.submit yield(:button_text), class:"btn btn-primary" %>
+      <% end %>
+     </div>
+</div>

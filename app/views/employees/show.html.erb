@@ -3,3 +3,27 @@
 <h2><%= @employee.name %></h2>
 <h2><%= @employee.email %></h2>
 <h2><%= @employee.get_status %></h2>
+
+<h3>items Owned</h3>
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Brand</th>
+      <th scope="col">Category</th>
+      <th scope="col">Item</th>
+      <th scope="col">Status</th>
+      <th scope="col" colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @assigned_items.each do |assigned| %>
+       <tr>
+        <td><%= assigned.item.brand.name %></td>
+        <td><%= assigned.item.category.name %></td>
+        <td><%= assigned.item.name %></td>
+        <td><%= assigned.status %></td>
+        <td><%= link_to "Assign Issue",'#', class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

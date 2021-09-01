@@ -1,6 +1,8 @@
 class Employee < ApplicationRecord
   before_save :email_downcase
 
+  has_and_belongs_to_many :items
+
   validates :name,presence: true
   validates :email,presence: true, uniqueness: true
   validates :status,inclusion: { in: [ true, false ] }

@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:index,:create,:edit,:update,:destroy]
   resources :employees
   resources :items
+  resources :employees_items
 end
