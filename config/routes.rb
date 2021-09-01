@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :users
   resources :brands, only: [:index,:create,:edit,:update,:destroy]
   resources :categories, only: [:index,:create,:edit,:update,:destroy]
+  resources :employees
+  resources :items
 end

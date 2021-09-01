@@ -21,3 +21,6 @@ body {
 .hidden {
   display: none;
 }
+.name-lowercase {
+  text-transform: lowercase;
+}

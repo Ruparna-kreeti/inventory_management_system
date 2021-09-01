@@ -1,0 +1,24 @@
+<h3>View All Employees </h3>
+<%= render 'shared/flash' %>
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+       <th scope="col">Status</th>
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @employees.each do |emp| %>
+       <tr>
+        <td><%= emp.name %></td>
+        <td><%= emp.email %></td>
+        <td><%= emp.get_status %></td>
+        <td><%= link_to "See details",emp, class:"btn btn-primary" %></td>
+        <td><%= link_to "Edit Employee",edit_employee_path(emp), class:"btn btn-primary" %></td>
+        <td><%= link_to "Delete",emp,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

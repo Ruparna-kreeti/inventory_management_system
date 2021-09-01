@@ -18,7 +18,7 @@ class BrandTest< ActiveSupport::TestCase
   test "brand name should be unique" do
     duplicate_brand=@brand.dup
     @brand.save
-    assert_not duplicate_brand.valid?
+    assert duplicate_brand.valid?
   end
 
 end
