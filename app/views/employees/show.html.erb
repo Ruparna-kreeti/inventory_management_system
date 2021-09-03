@@ -3,7 +3,8 @@
 <h2><%= @employee.name %></h2>
 <h2><%= @employee.email %></h2>
 <h2><%= @employee.get_status %></h2>
-
+<%= link_to "Assign Issue",new_employee_issue_url(@employee), class:"btn btn-danger" %>
+<%= link_to "View Your Issues",employee_view_issues_url(@employee), class:"btn btn-primary" %>
 <h3>items Owned</h3>
 <table class="table table-striped">
   <thead class="thead-light">
@@ -12,7 +13,6 @@
       <th scope="col">Category</th>
       <th scope="col">Item</th>
       <th scope="col">Status</th>
-      <th scope="col" colspan="1"></th>
     </tr>
   </thead>
   <tbody>
@@ -21,8 +21,7 @@
         <td><%= assigned.item.brand.name %></td>
         <td><%= assigned.item.category.name %></td>
         <td><%= assigned.item.name %></td>
-        <td><%= assigned.status %></td>
-        <td><%= link_to "Assign Issue",'#', class:"btn btn-danger" %></td>
+        <td><%= assigned.status %></td> 
       </tr>
     <% end %>
   </tbody>

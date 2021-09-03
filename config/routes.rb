@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   resources :users
   resources :brands, only: [:index,:create,:edit,:update,:destroy]
   resources :categories, only: [:index,:create,:edit,:update,:destroy]
-  resources :employees
+  resources :employees do
+    resources :issues, only: [:new,:create]
+    get 'view_issues', to: 'employees#view_issues'
+  end
+  resources :issues, only: [:index,:edit,:update,:destroy]
   resources :items
+  resources :storages
   resources :employees_items
 end

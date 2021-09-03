@@ -1,0 +1,8 @@
+<% @issues.each do |issue| %>
+<%= render 'shared/flash' %>
+  <h3><%= issue.employee.name %></h3>
+  <h2><%= issue.item.item_fullname %></h2>
+  <%= render 'issue' ,issue: issue %>
+  <%= link_to "verify",edit_issue_path(issue), class:"btn btn-primary" %>
+  <%= link_to "delete",issue ,method: :delete,data: {confirm: "are you sure?"}, class:"btn btn-primary" %>
+<% end %>

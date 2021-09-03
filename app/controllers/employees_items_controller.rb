@@ -1,5 +1,7 @@
 class EmployeesItemsController < ApplicationController
-  before_action :access_employees_and_items
+  include EmployeesHelper
+  include ItemsHelper
+  before_action :access_employees, :access_items
 
   def new
     @employees_item=EmployeesItem.new() 
@@ -7,10 +9,16 @@ class EmployeesItemsController < ApplicationController
 
   def create
     @employees_item=EmployeesItem.new(employees_item_params)
-    if @employees_item.save
-      redirect_to items_path;flash[:success]="Employee assigned successfully"
+    @item=Item.find_by(id:@employees_item.item_id)
+    if @item.storage && @item.storage.quantity > 0
+      if @employees_item.save
+        @item.storage.decrement!(:quantity)
+        redirect_to items_path;flash[:success]="Employee assigned successfully"
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to items_path;flash[:danger]="Either item not present in storage section or more quantity need to be stacked in storage"
     end
   end
 
@@ -24,8 +32,4 @@ class EmployeesItemsController < ApplicationController
       params.require(:employees_item).permit(:item_id,:employee_id,:status)
     end
 
-    def access_employees_and_items
-      @items=Item.all
-      @employees=Employee.all
-    end
 end

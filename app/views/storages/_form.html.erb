@@ -1,0 +1,15 @@
+<div class="row">
+  <div class=" col-6 form-group">
+    <%= form_with model: @storage do |f| %>
+      <%= f.label :item %>
+      <%= render 'shared/errors', object: f.object %>
+      <% options = options_from_collection_for_select(@items, 'id','item_fullname') %>
+      <%= f.select :item_id,  options %>
+      <%= f.label :procurement_date %>
+      <%= f.date_field :procurement_date,class:"form-control mt-10" %>
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity,class:"form-control mt-10" %>
+      <%= f.submit yield(:button_text),class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

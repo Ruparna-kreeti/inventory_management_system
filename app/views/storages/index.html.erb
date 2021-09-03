@@ -1,0 +1,23 @@
+<h1>All Storages</h1>
+<%= render 'shared/flash' %>
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Procurement Date</th>
+      <th scope="col">Storage quantity</th>
+      <th scope="col" colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+     <% @storages.each do |storage| %>
+       <tr>
+        <td><%= storage.item.item_fullname %></td>
+        <td><%= storage.procurement_date.strftime("%B %d, %Y") %></td>
+        <td><%= storage.quantity %></td>
+        <td><%= link_to "edit",edit_storage_path(storage),class:"btn btn-primary" %></td>
+        <td><%= link_to "delete", storage,method: :delete, data:{confirm:"are you sure?"},class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

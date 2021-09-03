@@ -4,6 +4,10 @@ class EmployeesController < ApplicationController
     @employees=Employee.all
   end
 
+  def view_issues
+    @issues=Employee.find_by(params[:id]).issues
+  end
+
   def show
     @employee=Employee.find(params[:id])
     @assigned_items=EmployeesItem.where(employee_id:@employee.id)

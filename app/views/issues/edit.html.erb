@@ -1,0 +1,10 @@
+<h3>Verify issue</h3>
+<p><%= @issue.item.item_fullname %></p>
+<p>by <%= @issue.employee.name %></p>
+<p><%= @issue.detail %></p>
+<%= form_with model: @issue do |f| %>
+  <%= render 'shared/errors',object: f.object %>
+  <%= f.label :is_solved, 'Issue resolved?' %>
+  <%= f.select :is_solved,[['solved',true], ['not solved',false]], class:"form-control mt-10" %>
+  <%= f.submit "Verify",class:"btn btn-primary" %>
+<% end %>

@@ -6,6 +6,10 @@ class Item < ApplicationRecord
 
   has_one_attached :file
 
+  has_one :storage, dependent: :destroy
+  
+  has_many :issues,dependent: :destroy
+
   has_and_belongs_to_many :employees
 
   validates :notes,presence: true, length: {maximum: 250}
