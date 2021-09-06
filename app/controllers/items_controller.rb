@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :check_user_access, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :access_category_and_brand
+
   def index
     @items=Item.all
   end
@@ -58,6 +60,12 @@ class ItemsController < ApplicationController
 
     def name_downcase
       self.name.downcase!
+    end
+
+    def check_user_access
+      if !user_logged_in || !user_section.item
+        redirect_to root_path;flash[:danger]="Not allowed to access"
+      end
     end
     
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'employee_sessions/new'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'application#index'
   resources :users
@@ -12,4 +13,13 @@ Rails.application.routes.draw do
   resources :items
   resources :storages
   resources :employees_items
+  resources :user_sessions, only: [:new, :create, :destroy]
+  get '/login', to: 'user_sessions#new'
+  post 'login', to: 'user_sessions#create'
+  get 'logout', to: 'user_sessions#destroy'
+  resources :employee_sessions, only: [:new, :create, :destroy]
+  get '/employee_login', to: 'employee_sessions#new'
+  post 'employee_login', to: 'employee_sessions#create'
+  get 'employee_logout', to: 'employee_sessions#destroy'
+
 end

@@ -1,6 +1,7 @@
 class EmployeesItemsController < ApplicationController
   include EmployeesHelper
   include ItemsHelper
+  before_action :check_user_access, only: [:new, :create, :destroy]
   before_action :access_employees, :access_items
 
   def new
@@ -30,6 +31,12 @@ class EmployeesItemsController < ApplicationController
   private
     def employees_item_params
       params.require(:employees_item).permit(:item_id,:employee_id,:status)
+    end
+
+    def check_user_access
+      if !user_logged_in || !user_section.item
+        redirect_to root_path;flash[:danger]="Not allowed to access"
+      end
     end
 
 end

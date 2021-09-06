@@ -1,6 +1,6 @@
 <%= form_with(model:@issue,url:[@employee,@issue]) do|f| %>
   <%= render 'shared/errors',object: f.object %>
-  <% options = options_from_collection_for_select(@items, 'id','item_fullname') %>
+  <% options = options_from_collection_for_select(@employee.items, 'id','item_fullname') %>
   <%= f.label :issue_for_item %>
   <%= f.select :item_id,  options %>
   <%= f.label :detail %><br>

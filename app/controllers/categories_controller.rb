@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :check_category_access, only: [:index, :create, :edit, :update, :destroy]
 
   def index
     @categories=Category.all
@@ -38,6 +39,12 @@ class CategoriesController < ApplicationController
 
     def category_update_params
       params.require(:category).permit(:name)
+    end
+
+    def check_category_access
+      if !user_logged_in || !user_section.category
+        redirect_to root_path;flash[:danger]="Not allowed to access"
+      end
     end
 
 end

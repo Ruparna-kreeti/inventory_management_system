@@ -1,5 +1,12 @@
 <div class="container">
-  <h1>Welcome to inventory management system</h1>
-  <h3>Login as admin to control</h3>
-  <h3>Login as employee to post issues </h3>
+  <%= render 'shared/flash' %>
+  <% if user_logged_in %>
+    <h1>Click on the nav links to continue</h1>
+  <% elsif employee_logged_in %>
+    <h1>Click on your profile to continue </h1>
+  <% else %>
+    <h1>Welcome to inventory management system</h1>
+    <h3>Login as admin to control</h3>
+    <h3>Login as employee to post issues </h3>
+  <% end %>
 </div>

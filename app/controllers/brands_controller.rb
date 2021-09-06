@@ -1,4 +1,5 @@
 class BrandsController < ApplicationController
+  before_action:check_brand_access, only: [:index, :create, :edit, :update, :destroy]
 
   def index
     @brands=Brand.all
@@ -38,5 +39,11 @@ class BrandsController < ApplicationController
 
     def brand_update_params
       params.require(:brand).permit(:name)
+    end
+
+    def check_brand_access
+      if !user_logged_in || !user_section.brand
+        redirect_to root_path;flash[:danger]="Not allowed to access"
+      end
     end
 end

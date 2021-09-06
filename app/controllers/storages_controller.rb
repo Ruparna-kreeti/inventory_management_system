@@ -1,5 +1,6 @@
 class StoragesController < ApplicationController
   include ItemsHelper
+  before_action :check_correct_user, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :access_items
 
   def index
@@ -40,6 +41,12 @@ class StoragesController < ApplicationController
   private
     def storage_params
       params.require(:storage).permit(:item_id,:procurement_date,:quantity)
+    end
+
+    def check_correct_user
+      if !user_logged_in || !user_section.storage
+        redirect_to root_path;flash[:danger]="Not allowed to access"
+      end
     end
 
 end

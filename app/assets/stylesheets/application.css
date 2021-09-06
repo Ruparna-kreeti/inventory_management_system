@@ -24,3 +24,6 @@ body {
 .name-lowercase {
   text-transform: lowercase;
 }
+.icon {
+  height: 30px;
+}
