@@ -17,4 +17,14 @@ class User < ApplicationRecord
         self.email=self.email.downcase
     end
 
+    def self.from_omniauth(auth)
+      if User.find_by(email: auth.info.email)
+        where(email: auth.info.email).first_or_initialize do |user|
+          user.name = auth.info.name
+          user.email = auth.info.email
+          user.password_digest = digest(new_token)
+        end
+      end
+    end
+
 end

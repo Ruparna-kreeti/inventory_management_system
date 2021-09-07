@@ -42,7 +42,12 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    Employee.find(params[:id]).destroy
+    @employee=Employee.find(params[:id])
+    if @employee.items
+      @employee.items.each do |item|
+        item.storage.increment!(:quantity)
+      end
+    end
     redirect_to employees_url;flash[:success]="Employee Deleted Successfully"
   end
 

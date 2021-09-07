@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.7'
  gem 'bcrypt', '~> 3.1.7'
  gem 'rexml', '~> 3.2', '>= 3.2.4'
  gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+ gem 'omniauth'
+ gem 'omniauth-google-oauth2','~> 1.0.0'
+ gem 'dotenv-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

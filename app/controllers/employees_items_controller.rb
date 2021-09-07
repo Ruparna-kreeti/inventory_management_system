@@ -25,11 +25,11 @@ class EmployeesItemsController < ApplicationController
     if @item.storage
       if @item.buffer_quantity + @item.storage.quantity <= @item.buffer_quantity
         @admins.each do |admin|
-          AdminNotification.create!(user:admin,storage:@item.storage,content:"check asap",priority:'high',read:false)
+          AdminNotification.create!(user:admin,storage:@item.storage,content:"check asap",priority:'high')
         end
       elsif @item.buffer_quantity + @item.storage.quantity < (2 * @item.buffer_quantity)
         @admins.each do |admin|
-          AdminNotification.create!(user:admin,storage:@item.storage,content:"check at prior date",priority:'medium',read:false)
+          AdminNotification.create!(user:admin,storage:@item.storage,content:"check at prior date",priority:'medium')
         end
       end
     end
