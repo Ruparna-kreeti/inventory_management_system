@@ -30,6 +30,7 @@ class IssuesController < ApplicationController
   def update
     @issue=Issue.find(params[:id])
     if @issue.update(edit_issue_params)
+      EmployeeNotification.create(employee:@issue.employee,issue:@issue,content:"Your issue is resolved for ")
       redirect_to issues_path;flash[:success]="Issue resolved"
     else
       render 'edit'

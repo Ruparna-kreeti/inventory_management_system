@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   resources :items
   resources :storages
   resources :employees_items
+  resources :admin_notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
   resources :user_sessions, only: [:new, :create, :destroy]
   get '/login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

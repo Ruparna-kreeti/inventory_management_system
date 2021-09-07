@@ -6,6 +6,8 @@ class User < ApplicationRecord
     has_secure_password
 
     has_one :section, dependent: :destroy
+
+    has_many :admin_notifications,dependent: :destroy
   
     validates :name,presence: true
     validates :email,presence: true, uniqueness: true

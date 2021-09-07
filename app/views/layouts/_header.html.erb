@@ -1,69 +1,99 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex">
-  <%= link_to "Inventory Management", root_path, class:'navbar-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse ml-auto justify-end" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <% if user_logged_in %>
-        <% if current_user.section.employee %>
-           <li class="nav-item">
-            <%= link_to "Manage Employees",employees_path,class:'nav-link' %>
-          </li>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Inventory Management", root_path, class:'navbar-brand' %>
+    </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_logged_in %>
+          <% if current_user.section.employee %>
+            <li class="nav-item">
+              <%= link_to "Manage Employees",employees_path,class:'nav-link' %>
+            </li>
+          <% end %>
+          <% if current_user.section.brand %>
+            <li class="nav-item">
+              <%= link_to "Manage Brands",brands_path,class:'nav-link' %>
+            </li>
+          <% end %>
+          <% if current_user.section.item %>
+            <li class="nav-item">
+              <%= link_to "Manage Items",items_path,class:'nav-link' %>
+            </li>
+          <% end %>
+          <% if current_user.section.category %>
+            <li class="nav-item">
+              <%= link_to "Manage Categories",categories_path,class:'nav-link' %>
+            </li>
+          <% end %>
+          <% if current_user.section.storage %>
+            <li class="nav-item">
+              <%= link_to "Manage Storage",storages_path,class:'nav-link' %>
+            </li>
+          <% end %>
+          <% if current_user.section.issue %>
+            <li class="nav-item">
+              <%= link_to "Manage Issues",issues_path,class:'nav-link' %>
+            </li>
+          <% end %>
+          <% if current_user.admin %>
+            <li class="nav-item">
+              <%= link_to "Manage Master Users",users_path,class:'nav-link' %>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="/assets/bell.png" class='icon'/>
+                 <%= current_user.admin_notifications.length %>
+              </a>
+              <ul class="dropdown-menu">
+                 <%= render 'admin_notifications/notifications' %>
+              </ul>
+            </li>
+          <% end %>
         <% end %>
-        <% if current_user.section.brand %>
-           <li class="nav-item">
-            <%= link_to "Manage Brands",brands_path,class:'nav-link' %>
+        <% if employee_logged_in %>
+          <li class="nav-item">
+            <%= link_to "Profile",employee_path(current_employee),class:'nav-link' %>
           </li>
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="/assets/bell.png" class='icon'/>
+                <%= current_employee.employee_notifications.length %>
+              </a>
+              <ul class="dropdown-menu">
+                  <%= render 'employee_notifications/notifications' %>
+              </ul>
+            </li>
         <% end %>
-        <% if current_user.section.item %>
-           <li class="nav-item">
-            <%= link_to "Manage Items",items_path,class:'nav-link' %>
-          </li>
-        <% end %>
-        <% if current_user.section.category %>
-           <li class="nav-item">
-            <%= link_to "Manage Categories",categories_path,class:'nav-link' %>
-          </li>
-        <% end %>
-        <% if current_user.section.storage %>
-           <li class="nav-item">
-            <%= link_to "Manage Storage",storages_path,class:'nav-link' %>
-          </li>
-        <% end %>
-        <% if current_user.section.issue %>
-           <li class="nav-item">
-            <%= link_to "Manage Issues",issues_path,class:'nav-link' %>
-          </li>
-        <% end %>
-        <% if current_user.admin %>
-           <li class="nav-item">
-            <%= link_to "Manage Master Users",users_path,class:'nav-link' %>
-          </li>
-          <img src="/assets/bell.png" class='icon'/>
-        <% end %>
-      <% end %>
-      <% if employee_logged_in %>
-       <li class="nav-item">
-          <%= link_to "Profile",employee_path(current_employee),class:'nav-link' %>
+      `</ul>
+    <ul class="nav navbar-nav navbar-right">
+    `
+      <% if !user_logged_in && !employee_logged_in%>
+        <li class="nav-item">
+         <%= link_to "Main Login",login_path,class:'nav-link' %>
+        </li>
+        <li class="nav-item">
+         <%= link_to "Employee Login",employee_login_path,class:'nav-link' %>
+        </li>
+      <% elsif employee_logged_in %>
+        <li class="nav-item">
+          <%= link_to "Logout",employee_logout_path,class:'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Logout",logout_path,class:'nav-link' %>
         </li>
       <% end %>
     </ul>
+    </div>
   </div>
-  <% if !user_logged_in && !employee_logged_in%>
-    <div class="nav-item">
-      <%= link_to "Main Login",login_path,class:'nav-link' %>
-    </div>
-    <div class="nav-item">
-      <%= link_to "Employee Login",employee_login_path,class:'nav-link' %>
-    </div>
-  <% elsif employee_logged_in %>
-    <div class="nav-item">
-      <%= link_to "Logout",employee_logout_path,class:'nav-link' %>
-    </div>
-  <% else %>
-  <div class="nav-item">
-      <%= link_to "Logout",logout_path,class:'nav-link' %>
-    </div>
-  <% end %>
 </nav>

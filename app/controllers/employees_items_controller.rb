@@ -9,6 +9,7 @@ class EmployeesItemsController < ApplicationController
   end
 
   def create
+    @admins=User.where(admin:true)
     @employees_item=EmployeesItem.new(employees_item_params)
     @item=Item.find_by(id:@employees_item.item_id)
     if @item.storage && @item.storage.quantity > 0
@@ -20,6 +21,17 @@ class EmployeesItemsController < ApplicationController
       end
     else
       redirect_to items_path;flash[:danger]="Either item not present in storage section or more quantity need to be stacked in storage"
+    end
+    if @item.storage
+      if @item.buffer_quantity + @item.storage.quantity <= @item.buffer_quantity
+        @admins.each do |admin|
+          AdminNotification.create!(user:admin,storage:@item.storage,content:"check asap",priority:'high',read:false)
+        end
+      elsif @item.buffer_quantity + @item.storage.quantity < (2 * @item.buffer_quantity)
+        @admins.each do |admin|
+          AdminNotification.create!(user:admin,storage:@item.storage,content:"check at prior date",priority:'medium',read:false)
+        end
+      end
     end
   end
 
@@ -38,5 +50,5 @@ class EmployeesItemsController < ApplicationController
         redirect_to root_path;flash[:danger]="Not allowed to access"
       end
     end
-
+    
 end

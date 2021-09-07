@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :check_category_access, only: [:index, :create, :edit, :update, :destroy]
+  #before_action :check_category_access, only: [:index, :create, :edit, :update, :destroy]
 
   def index
     @categories=Category.all

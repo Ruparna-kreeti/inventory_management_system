@@ -5,7 +5,7 @@ module EmployeeSessionsHelper
 
   def current_employee
     if session[:employee_id]
-      @current_employee||=User.find(session[:employee_id])
+      @current_employee||=Employee.find(session[:employee_id])
     end
   end
 

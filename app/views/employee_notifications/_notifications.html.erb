@@ -1,0 +1,3 @@
+ <% current_employee.employee_notifications.each do |notifications| %>
+    <li><%=link_to notifications.content+' for item '+notifications.issue.item.item_fullname,employee_view_issues_url(current_employee) %></li>
+<% end %>
