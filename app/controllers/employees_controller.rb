@@ -2,6 +2,7 @@ class EmployeesController < ApplicationController
   before_action :check_employee_access, only: [:index,:new,:create,:edit,:update,:destroy]
   before_action :check_correct_show_access, only: [:show]
   before_action :check_correct_issue, only: [:view_issues]
+  
   def index
     @employees=Employee.all
   end

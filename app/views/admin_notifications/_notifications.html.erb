@@ -1,3 +1,5 @@
  <% current_user.admin_notifications.each do |notifications| %>
-    <li><%=link_to notifications.content+' for item '+notifications.storage.item.item_fullname,storages_path, class:notifications.priority %></li>
-  <% end %>
+  <li>
+    <%=link_to notifications.content+' for item '+notifications.storage.item.item_fullname,storages_path, class:notifications.priority %>
+  </li>
+<% end %>

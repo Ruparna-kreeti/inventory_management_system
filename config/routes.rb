@@ -14,16 +14,12 @@ Rails.application.routes.draw do
   resources :items
   resources :storages
   resources :employees_items
-  resources :user_sessions, only: [:new, :create, :destroy]
+  resources :user_sessions, only: [:new, :destroy]
   get '/login', to: 'user_sessions#new'
-  post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
-  resources :employee_sessions, only: [:new, :create, :destroy]
-  get '/employee_login', to: 'employee_sessions#new'
-  post 'employee_login', to: 'employee_sessions#create'
+  resources :employee_sessions, only: [:destroy]
   get 'employee_logout', to: 'employee_sessions#destroy'
-  get 'auth/:provider/callback', to: 'user_sessions#googleAuth'
-  get 'auth/:employee/callback', to: 'employee_sessions#googleAuth'
+  get 'auth/:provider/callback', to: 'user_sessions#google_auth'
   get 'auth/failure', to: redirect('/')
 
 end
