@@ -1,20 +1,2 @@
-<div class="row">
-  <%= render 'shared/flash' %>
-  <div class=" col-6 form-group">
-    <%= form_tag login_path do |f| %>
-       <div class="field">
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-        </div>
-
-        <div class="field">
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-        </div>
-
-        <div class="actions">
-        <%= submit_tag "Login" %>
-        </div>
-     <% end %>
-  </div>
-<%= link_to "Log In with Google", '/auth/google_oauth2',method: :get %>
+<%= render 'shared/flash' %>
+<%= link_to "Log In with Google", '/auth/google_oauth2',method: :get,class:'btn btn-primary' %>

@@ -5,30 +5,26 @@ class UserSessionsController < ApplicationController
   def new
   end
 
-  def create
-    user=User.find_by_email(params[:email].downcase)
-    if user && user.authenticate(params[:password])
-      log_in_user user
-      redirect_to root_path;flash[:success]="Logged in successfully"
-    else
-      flash.now[:danger]="Not authorized user"
-      render 'new'
-    end
-  end
-
-  def destroy
-    session.delete(:user_id)
-    redirect_to root_path;flash[:success]="Logged out successfully"
-  end
+  # def create
+  #   user=User.find_by_email(params[:email].downcase)
+  #   if user && user.authenticate(params[:password])
+  #     log_in_user user
+  #     redirect_to root_path;flash[:success]="Logged in successfully"
+  #   else
+  #     flash.now[:danger]="Not authorized user"
+  #     render 'new'
+  #   end
+  # end
 
   def googleAuth
     # Get access tokens from the google server
     access_token = request.env["omniauth.auth"]
     user = User.from_omniauth(access_token)
-    if user.nil?
+    employee=Employee.from_omniauth(access_token)
+    if user.nil? && employee.nil?
       flash.now[:danger]="Not authorized user"
       render 'new'
-    else
+    elsif user
       session[:user_id]=user.id
       # Access_token is used to authenticate request made from the rails application to the google server
       user.google_token = access_token.credentials.token
@@ -38,7 +34,22 @@ class UserSessionsController < ApplicationController
       user.google_refresh_token = refresh_token if refresh_token.present?
       user.save
       redirect_to root_path;flash[:success]="Logged in successfully"
+    else
+      log_in_employee employee
+      # Access_token is used to authenticate request made from the rails application to the google server
+      employee.google_token = access_token.credentials.token
+      # Refresh_token to request new access_token
+      # Note: Refresh_token is only sent once during the first request
+      refresh_token = access_token.credentials.refresh_token
+      employee.google_refresh_token = refresh_token if refresh_token.present?
+      employee.save
+      redirect_to root_path;flash[:success]="Logged in successfully"
     end
+  end
+  
+  def destroy
+    session.delete(:user_id)
+    redirect_to root_path;flash[:success]="Logged out successfully"
   end
 
   private

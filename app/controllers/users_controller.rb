@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user=User.new(user_params)
+    @user.password="password"
     @section=@user.build_section(section_params)
     if @user.save && @section.save
       redirect_to @user; flash[:success]="User created Successfully"
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name,:email,:password)
+      params.require(:user).permit(:name,:email)
     end
 
     def section_params

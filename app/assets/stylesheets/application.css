@@ -32,5 +32,8 @@ body {
   color: red !important;
 }
 .medium {
-  color: pink !important;
+  color: #ff80b3 !important;
+}
+.input-dropdown {
+  padding: 10px;
 }

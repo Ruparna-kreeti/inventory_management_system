@@ -1,10 +1,14 @@
 <%= render 'shared/flash' %>
-<h3>Employee Details</h3>
-<h2><%= @employee.name %></h2>
-<h2><%= @employee.email %></h2>
-<h2><%= @employee.get_status %></h2>
-<%= link_to "Assign Issue",new_employee_issue_url(@employee), class:"btn btn-danger" %>
-<%= link_to "View Your Issues",employee_view_issues_url(@employee), class:"btn btn-primary" %>
+<div class="jumbotron">
+<h2>Employee Details</h2>
+<p>Name: <%= @employee.name %></p>
+<p>Email: <%= @employee.email %></p>
+<p>Status: <%= @employee.get_status %></p>
+</div>
+<% if employee_logged_in %>
+  <%= link_to "Assign Issue",new_employee_issue_url(@employee), class:"btn btn-danger" %>
+<% end %>
+<%= link_to "View Employee Issues",employee_view_issues_url(@employee), class:"btn btn-primary" %>
 <h3>items Owned</h3>
 <table class="table table-striped">
   <thead class="thead-light">

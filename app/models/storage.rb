@@ -2,6 +2,8 @@ class Storage < ApplicationRecord
   validate :validate_procurement_date
 
   belongs_to :item
+
+  has_many :admin_notifications,dependent: :nullify
   
   validates :item_id,presence: true,uniqueness: true
   validates :quantity,presence: true

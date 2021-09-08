@@ -48,6 +48,7 @@ class EmployeesController < ApplicationController
         item.storage.increment!(:quantity)
       end
     end
+    @employee.destroy
     redirect_to employees_url;flash[:success]="Employee Deleted Successfully"
   end
 

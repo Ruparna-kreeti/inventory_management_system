@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'employee_login', to: 'employee_sessions#create'
   get 'employee_logout', to: 'employee_sessions#destroy'
   get 'auth/:provider/callback', to: 'user_sessions#googleAuth'
+  get 'auth/:employee/callback', to: 'employee_sessions#googleAuth'
   get 'auth/failure', to: redirect('/')
 
 end

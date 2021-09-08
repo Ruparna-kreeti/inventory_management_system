@@ -36,6 +36,8 @@ class EmployeesItemsController < ApplicationController
   end
 
   def destroy
+    @employee_item=EmployeesItem.find(params[:id])
+    @employee_item.item.storage.increment!(:quantity)
     EmployeesItem.find(params[:id]).destroy
     redirect_back(fallback_location: root_path);flash[:success]="Association deleted successfully"
   end

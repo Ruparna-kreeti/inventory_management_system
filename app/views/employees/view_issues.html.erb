@@ -1,3 +1,6 @@
 <% @issues.each do |issue| %>
-  <%= render 'issues/issue', issue: issue %>
+  <div class="jumbotron">
+    <p>Item: <%= issue.item.item_fullname %></p>
+    <%= render 'issues/issue', issue: issue %>
+  </div>
 <% end %>

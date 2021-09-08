@@ -3,11 +3,11 @@
     <%= form_with model: @employee do |f| %>
       <%= render 'shared/errors', object: f.object %>
       <%= f.label :name %>
-      <%= f.text_field :name, class:"form-control mt-10" %>
+      <%= f.text_field :name, class:"form-control mt-10",required: true %>
       <%= f.label :email %>
-      <%= f.email_field :email,class:"form-control mt-10" %>
-      <%= f.label :status %>
-      <%= f.select :status, [['Active',true], ['Inactive',false]], class:"form-control mt-10" %>
+      <%= f.email_field :email,class:"form-control mt-10",required: true %>
+      <%= f.label :status,class:'Dropdown' %><br/>
+      <%= f.select :status, [['Active',true], ['Inactive',false]] %><br/><br/>
       <%= f.submit yield(:button_text), class:"btn btn-primary" %>
       <% end %>
      </div>

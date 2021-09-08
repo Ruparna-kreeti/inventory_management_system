@@ -1,5 +1,5 @@
 class BrandsController < ApplicationController
-  before_action:check_brand_access, only: [:index, :create, :edit, :update, :destroy]
+  before_action :check_brand_access, only: [:index, :create, :edit, :update, :destroy]
 
   def index
     @brands=Brand.all
@@ -46,4 +46,5 @@ class BrandsController < ApplicationController
         redirect_to root_path;flash[:danger]="Not allowed to access"
       end
     end
+    
 end

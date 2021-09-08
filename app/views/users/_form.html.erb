@@ -6,8 +6,7 @@
     <%= f.text_field :name , class:"form-control mt-10"%>
     <%= f.label :email %>
     <%= f.email_field :email,class:"form-control mt-10" %>
-    <%= f.label :password %>
-    <%= f.password_field :password,class:"form-control" %>
+    <h5>Add Accesses for user</h5>
     <%= f.label :employee %>
     <%= f.select :employee,[['yes',true], ['no',false]], class:"form-control mt-10" %>
     <%= f.label :brand %>
@@ -19,7 +18,7 @@
     <%= f.label :storage %>
     <%= f.select :storage,[['yes',true], ['no',false]], class:"form-control mt-10" %>
     <%= f.label :issue %>
-    <%= f.select :issue,[['yes',true], ['no',false]], class:"form-control mt-10" %> 
+    <%= f.select :issue,[['yes',true], ['no',false]], class:"form-control mt-10" %><br/>
     <%= f.submit yield(:button_text), class:"btn btn-primary" %>
     <% end %>
   </div>
