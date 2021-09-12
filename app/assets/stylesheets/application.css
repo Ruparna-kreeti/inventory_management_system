@@ -25,8 +25,9 @@ body {
 .name-lowercase {
   text-transform: lowercase;
 }
-.icon {
-  height: 22px;
+.dropdown-toggle {
+  padding-bottom: 2px;
+  margin-left: 2px;
 }
 .high {
   color: red !important;
@@ -36,4 +37,37 @@ body {
 }
 .input-dropdown {
   padding: 10px;
+}
+.custom-table {
+  border: 1px solid gray;
+}
+
+.employee h3 {
+  font-weight: bold;
+}
+.employee p {
+  font-size: 18px;
+}
+.issue-index {
+  text-align: center;
+}
+.issue-index h3 {
+  font-weight: bold;
+}
+.issue-index p {
+  font-size: 18px;
+}
+.issue-index span {
+  font-size: 17px;
+  font-style: italic;
+}
+.login-content {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-content .btn {
+  padding: 10px;
+  font-size: 25px;
 }

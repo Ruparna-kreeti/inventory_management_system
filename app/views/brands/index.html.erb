@@ -1,6 +1,5 @@
-<% provide(:button_text,'Add brand') %>
 <%= render 'shared/flash' %>
-<%= render 'form' %>
+<%= link_to "Add Brand",new_brand_path, class:'btn btn-primary' %>
 <h1>All Brands</h1>
 <table class="table table-striped">
   <thead class="thead-light">
@@ -13,8 +12,8 @@
      <% @brands.each do |brand| %>
        <tr>
         <td><%= brand.name %></td>
-        <td><%= link_to "edit",edit_brand_path(brand),class:"btn btn-primary" %></td>
-        <td><%= link_to "delete brand", brand,method: :delete, data:{confirm:"are you sure?"},class:"btn btn-danger" %></td>
+        <td><%= link_to "Edit Brand",edit_brand_path(brand),class:"btn btn-primary" %></td>
+        <td><%= link_to "Delete Brand", brand,method: :delete, data:{confirm:"are you sure?"},class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

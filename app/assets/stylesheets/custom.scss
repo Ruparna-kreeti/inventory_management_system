@@ -1,2 +1,100 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.home {
+  background-color: rgb(225, 237, 243);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-height: 600px;
+  padding: 30px;
+  img {
+    height: 50vh;
+    align-self: flex-end;
+  }
+  .texts {
+    align-self: center;
+    h1 {
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    p {
+      text-align: center;
+      margin: 20px;
+      font-size: 20px;
+    }
+  }
+}
+.navigation {
+  margin: auto 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  .nav {
+    display: flex;
+    flex-direction: row;
+    .nav-link {
+      color: rgba(0, 0, 0, 0.5);
+      &:hover {
+        background-color: transparent;
+        color: black;
+      }
+    }
+    .dropdown-menu {
+      left: -280px;
+    }
+  }
+  .icon {
+    opacity: 0.5;
+    height: 30px;
+  }
+  .logo {
+    margin: 10px;
+    height: 50px;
+  }
+  .btn {
+    margin-left: 01px;
+  }
+}
+.active {
+  background-color: #eeeeee;
+  .nav-link {
+    color: black !important;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .required {
+    color: red;
+    margin-left: 5px;
+    font-size: 19px;
+  }
+  label {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  input {
+    width: 400px;
+  }
+  select {
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+  }
+  .user-access-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .table {
+      margin-top: 20px;
+    }
+    select {
+      width: 100px;
+    }
+  }
+}

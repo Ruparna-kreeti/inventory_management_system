@@ -3,7 +3,7 @@ class Storage < ApplicationRecord
 
   belongs_to :item
 
-  has_many :admin_notifications,dependent: :nullify
+  has_many :admin_notifications,dependent: :destroy
   
   validates :item_id,presence: true,uniqueness: true
   validates :quantity,presence: true
@@ -18,7 +18,7 @@ class Storage < ApplicationRecord
   end
 
   def validate_procurement_date
-    errors.add("Procurement date", "must be within current date to 20years before(Ex if today:1/1/2021 then date within 1/1/2001-1/1/2021)") unless convert_date
+    errors.add("Procurement date", "must be within current date to 20years") unless convert_date
   end
 
 end

@@ -17,7 +17,7 @@ class IssuesController < ApplicationController
     @employee=Employee.find_by(id:params[:employee_id])
     @issue=@employee.issues.new(issue_params)
     if @issue.save
-      redirect_to employee_path(@employee);flash[:success]="Issue added successfully"
+      redirect_to employee_path(@employee), flash: { success: "Issue added successfully" }
     else
       render 'new'
     end
@@ -31,7 +31,7 @@ class IssuesController < ApplicationController
     @issue=Issue.find(params[:id])
     if @issue.update(edit_issue_params)
       EmployeeNotification.create(employee:@issue.employee,issue:@issue,content:"Your issue is resolved for ")
-      redirect_to issues_path;flash[:success]="Issue resolved"
+      redirect_to issues_path, flash: { success: "Issue resolved" }
     else
       render 'edit'
     end
@@ -41,9 +41,9 @@ class IssuesController < ApplicationController
     @issue=Issue.find(params[:id])
     if @issue.is_solved
       @issue.destroy
-      redirect_to issues_path;flash[:success]="Issue deleted"
+      redirect_to issues_path, flash: { success: "Issue deleted" }
     else
-      redirect_to issues_path;flash[:danger]="please verify the issue before deleting"
+      redirect_to issues_path, flash: { success: "please verify the issue before deleting" }
     end
   end
 
@@ -58,14 +58,14 @@ class IssuesController < ApplicationController
 
     def check_user_access
       if !user_logged_in || !user_section.issue
-        redirect_to root_path;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: { danger: "Not allowed to access" }
       end
     end
 
     def check_employee_access
       @employee=Employee.find(params[:employee_id])
       if !employee_logged_in || @employee.id!=current_employee.id
-        redirect_to root_path;flash[:danger]="Not allowed to accesss"
+        redirect_to root_path, flash: {danger: "Not allowed to access" }
       end
     end
 

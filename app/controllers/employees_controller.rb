@@ -23,7 +23,7 @@ class EmployeesController < ApplicationController
   def create
     @employee=Employee.new(employee_params)
     if @employee.save
-      redirect_to @employee;flash[:success]="Employee Created successfully"
+      redirect_to employees_path, flash: { success: "Employee created Successfully" }
     else
       render 'new'
     end
@@ -36,7 +36,7 @@ class EmployeesController < ApplicationController
   def update
     @employee=Employee.find(params[:id])
     if @employee.update(employee_params)
-      redirect_to @employee;flash[:success]="Employee Updated Successfully"
+      redirect_to employees_path, flash: { success: "Employee Updated Successfully" }
     else
       render 'edit'
     end
@@ -50,7 +50,7 @@ class EmployeesController < ApplicationController
       end
     end
     @employee.destroy
-    redirect_to employees_url;flash[:success]="Employee Deleted Successfully"
+    redirect_to employees_path, flash: { success: "Employee deleted Successfully" }
   end
 
   private
@@ -60,21 +60,21 @@ class EmployeesController < ApplicationController
 
     def check_employee_access
       if !user_logged_in || !user_section.employee
-        redirect_to root_url;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: { danger: "Not allowed to access" }
       end
     end
 
     def check_correct_show_access
       @employee=Employee.find(params[:id])
       unless (employee_logged_in && @employee.id == current_employee.id) || (user_logged_in && user_section.employee) 
-        redirect_to root_url;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: {danger: "Not allowed to access" }
       end
     end
 
     def check_correct_issue
       @employee=Employee.find(params[:employee_id])
       if (!employee_logged_in || @employee.id!=current_employee.id) && (!user_logged_in || !user_section.employee)
-        redirect_to root_url;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: {danger: "Not allowed to access" }
       end
     end
     

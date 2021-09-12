@@ -1,6 +1,12 @@
-<% @issues.each do |issue| %>
+<% if @issues.empty? %>
   <div class="jumbotron">
-    <p>Item: <%= issue.item.item_fullname %></p>
-    <%= render 'issues/issue', issue: issue %>
+    <h2>No issues to show</h2>
   </div>
+<% else %>
+  <% @issues.each do |issue| %>
+    <div class="jumbotron">
+      <p>Item: <%= issue.item.item_fullname %></p>
+      <%= render 'issues/issue', issue: issue %>
+    </div>
+  <% end %>
 <% end %>

@@ -4,7 +4,6 @@
 <table class="table table-striped">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Id</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col" colspan="3"></th>
@@ -13,11 +12,10 @@
   <tbody>
      <% @users.each do |user| %>
        <tr>
-        <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to "See details",user, class:"btn btn-primary" %></td>
-        <td><%= link_to "edit user",edit_user_path(user), class:"btn btn-primary" %></td>
+        <td><%= link_to "See Details",user, class:"btn btn-primary" %></td>
+        <td><%= link_to "Edit User",edit_user_path(user), class:"btn btn-primary" %></td>
         <td><%= link_to "Delete",user,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
       </tr>
     <% end %>

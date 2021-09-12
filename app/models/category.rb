@@ -1,7 +1,8 @@
 class Category < ApplicationRecord
   before_save :name_downcase
 
-  validates :name,presence: true,uniqueness: true
+  has_many :items,dependent: :destroy
+  validates :name,presence: true,:uniqueness =>{:case_sensitive => false}
 
   default_scope{order('name ASC')}
 

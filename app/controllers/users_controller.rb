@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user.password="password"
     @section=@user.build_section(section_params)
     if @user.save && @section.save
-      redirect_to @user; flash[:success]="User created Successfully"
+      redirect_to @user, flash: { success: "User created Successfully" }
     else
       render 'new'
     end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @section=@user.section
     if @user.update(user_params) && @section.update(section_params)
-      redirect_to @user; flash[:success]="User updated successfully"
+      redirect_to @user, flash: { success: "User updated successfully" }
     else
       render 'edit'
     end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    redirect_to users_url;flash[:success]="User deleted successfully"
+    redirect_to users_url, flash: { success: "User deleted successfully" }
   end
 
   private
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
     def check_admin
       if !user_logged_in || !current_user.admin
-        redirect_to root_path;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: { danger: "Not allowed to access" }
       end
     end
 

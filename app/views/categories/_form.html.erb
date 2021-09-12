@@ -1,10 +1,13 @@
-<div class="col-6 form-group">
-  <%= form_with model: @category do |f| %>
-    <% unless f.object.nil? %>
-      <%=render 'shared/errors',object: f.object %>
+<div class="form">
+  <div class="jumbotron">
+    <%= form_with model: @category do |f| %>
+      <% unless f.object.nil? %>
+        <%=render 'shared/errors',object: f.object %>
+      <% end %>
+      <%=f.label :name %><span class="required">*</span>
+      <%= f.text_field :name, class:"form-control input-sm" %>
+      <br/>
+      <%= f.submit yield(:button_text),class:"btn btn-primary" %>
     <% end %>
-    <%=f.label :name %>
-    <%= f.text_field :name, class:"form-control" %>
-    <%= f.submit yield(:button_text),class:"btn btn-primary" %>
-  <% end %>
+  </div>
 </div>

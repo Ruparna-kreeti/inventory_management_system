@@ -1,15 +1,15 @@
 <%= render 'shared/flash' %>
 <div class="jumbotron">
-<h2>Employee Details</h2>
-<p>Name: <%= @employee.name %></p>
-<p>Email: <%= @employee.email %></p>
-<p>Status: <%= @employee.get_status %></p>
+<h2 class="text-center font-weight-bold">Employee Details</h2>
+<p class="text-center">Name: <%= @employee.name %></p>
+<p class="text-center">Email: <%= @employee.email %></p>
+<p class="text-center">Status: <%= @employee.get_status %></p>
 </div>
 <% if employee_logged_in %>
   <%= link_to "Assign Issue",new_employee_issue_url(@employee), class:"btn btn-danger" %>
 <% end %>
 <%= link_to "View Employee Issues",employee_view_issues_url(@employee), class:"btn btn-primary" %>
-<h3>items Owned</h3>
+<h3>Items Owned</h3>
 <table class="table table-striped">
   <thead class="thead-light">
     <tr>
@@ -20,12 +20,18 @@
     </tr>
   </thead>
   <tbody>
-     <% @assigned_items.each do |assigned| %>
-       <tr>
-        <td><%= assigned.item.brand.name %></td>
-        <td><%= assigned.item.category.name %></td>
-        <td><%= assigned.item.name %></td>
-        <td><%= assigned.status %></td> 
+    <% if !@assigned_items.empty? %>
+      <% @assigned_items.each do |assigned| %>
+        <tr>
+          <td><%= assigned.item.brand.name %></td>
+          <td><%= assigned.item.category.name %></td>
+          <td><%= assigned.item.name %></td>
+          <td><%= assigned.get_status %></td> 
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>No Items To Show</td>
       </tr>
     <% end %>
   </tbody>

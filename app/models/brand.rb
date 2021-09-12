@@ -1,11 +1,8 @@
 class Brand < ApplicationRecord
-  before_save :name_humanize
+  has_many :items, dependent: :destroy
 
-  validates :name,presence: true,uniqueness: true
+  validates :name,presence: true,:uniqueness =>{:case_sensitive => false}
 
   default_scope{order('name ASC')}
 
-  def name_humanize
-    self.name=self.name.humanize
-  end
 end

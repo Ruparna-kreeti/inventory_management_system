@@ -1,12 +1,14 @@
 <%= render 'shared/flash' %>
-<div class="jumbotron">
+<div class="home">
+<div class="texts">
+  <h1>INVENTORY MANAGEMENT</h1>
   <% if user_logged_in %>
-    <h1>Click on the nav links to continue</h1>
+    <p>Select the navigation Links to achieve your desired work</p>
   <% elsif employee_logged_in %>
-    <h1>Click on your profile to continue </h1>
+    <p>Click on your profile to continue </p>
   <% else %>
-    <h1>Welcome to inventory management system</h1>
-    <h3>Login as admin to control</h3>
-    <h3>Login as employee to post issues </h3>
+    <p>Manage your inventory at a few clicks</p>
   <% end %>
+</div>
+<img src="/assets/home.svg" class="colg-lg-4">
 </div>

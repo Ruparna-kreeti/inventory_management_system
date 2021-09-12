@@ -1,10 +1,17 @@
-<h3>Verify issue</h3>
-<p><%= @issue.item.item_fullname %></p>
-<p>by <%= @issue.employee.name %></p>
-<p><%= @issue.detail %></p>
+<h3>Verify issue for</h3>
+<div class='form'>
+<div class='jumbotron'>
+<p>Item: <%= @issue.item.item_fullname %></p>
+<p>posted by: <%= @issue.employee.name %></p>
+<p>Details: <%= @issue.detail %></p>
 <%= form_with model: @issue do |f| %>
   <%= render 'shared/errors',object: f.object %>
+  <div>
   <%= f.label :is_solved, 'Issue resolved?' %>
-  <%= f.select :is_solved,[['solved',true], ['not solved',false]], class:"form-control mt-10" %>
+  <%= f.select :is_solved,[['solved',true], ['not solved',false]], class:"form-control" %>
+  </div>
+  <br/>
   <%= f.submit "Verify",class:"btn btn-primary" %>
 <% end %>
+</div>
+</div>

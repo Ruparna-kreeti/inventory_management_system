@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   get 'employee_sessions/new'
   root 'application#index'
   resources :users
-  resources :brands, only: [:index,:create,:edit,:update,:destroy]
-  resources :categories, only: [:index,:create,:edit,:update,:destroy]
+  resources :brands
+  resources :categories
 
   resources :employees do
     resources :issues, only: [:new,:create]

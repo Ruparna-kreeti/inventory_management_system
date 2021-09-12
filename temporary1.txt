@@ -1,0 +1,16 @@
+<div class="row employee jumbotron">
+  <div class=" col-lg-6 ">
+    <%= form_with model: @employee do |f| %>
+      <%= render 'shared/errors', object: f.object %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class:"form-control mt-10 input-sm",required: true %>
+      <%= f.label :email %>
+      <%= f.email_field :email,class:"form-control mt-10 input-sm",required: true %>
+      <%= f.label :status,class:'Dropdown' %><br/>
+      <%= f.select :status, [['Active',true], ['Inactive',false]] %><br/><br/>
+      <%= f.submit yield(:button_text), class:"btn btn-primary text-center" %>
+    <% end %>
+  </div>
+</div>
+</div>
+

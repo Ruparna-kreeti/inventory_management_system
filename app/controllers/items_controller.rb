@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     @item.name=@item.name.downcase
     @item.file.attach(params[:item][:file])
     if @item.save
-      redirect_to @item;flash[:success]="Item added successfully"
+      redirect_to items_path, flash: { success: "Item added successfully" }
     else
       render 'new'
     end
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   def update
     @item=Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to @item;flash[:success]="Item updated successfully"
+      redirect_to items_path, flash: { success: "Item updated successfully" }
     else
       render 'edit'
     end
@@ -42,9 +42,9 @@ class ItemsController < ApplicationController
   def destroy
     if Item.find(params[:id]).employees.count < 1
       Item.find(params[:id]).destroy
-      redirect_to items_path;flash[:success]="Item deleted successfully"
+      redirect_to items_path, flash: {success: "Item deleted successfully" }
     else
-      redirect_to items_path;flash[:danger]="Item assigned to employee,cannot be deleted"
+      redirect_to items_path, flash: { danger: "Item assigned to employee,cannot be deleted" }
     end
   end
 
@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
 
     def check_user_access
       if !user_logged_in || !user_section.item
-        redirect_to root_path;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: { danger: "Not allowed to access" }
       end
     end
     

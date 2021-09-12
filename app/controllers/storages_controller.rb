@@ -14,7 +14,7 @@ class StoragesController < ApplicationController
   def create
     @storage=Storage.new(storage_params)
     if @storage.save
-      redirect_to storages_path;flash[:success]="Stacked Successfully"
+      redirect_to storages_path, flash: { success: "Stacked Successfully" }
     else
       render 'new'
     end
@@ -27,15 +27,20 @@ class StoragesController < ApplicationController
   def update 
     @storage=Storage.find(params[:id])
     if @storage.update(storage_params)
-      redirect_to storages_path;flash[:success]="updated successfully"
+      redirect_to storages_path, flash: { success: "Updated Successfully" }
     else
       render 'edit'
     end
   end
 
   def destroy
-    Storage.find(params[:id]).destroy
-    redirect_to storages_path;flash[:success]="deleted successfully"
+    @storage=Storage.find(params[:id])
+    if @storage.item.employees.empty?
+      @storage.destroy
+      redirect_to storages_path, flash: { success: "Deleted Successfully" }
+    else
+      redirect_to storages_path, flash: {danger: "Employee has this item.Please delete the association first" }
+    end
   end
 
   private
@@ -45,7 +50,7 @@ class StoragesController < ApplicationController
 
     def check_correct_user
       if !user_logged_in || !user_section.storage
-        redirect_to root_path;flash[:danger]="Not allowed to access"
+        redirect_to root_path, flash: {danger: "Not Allowed To Access" }
       end
     end
 

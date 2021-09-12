@@ -1,25 +1,27 @@
 <%= render 'shared/flash' %>
-<div class="jumbotron">
-<h3>User details</h3>
-<p>Name: <%= @user.name %></p>
-<p>Email: <%= @user.email %></p>
-<p>has access to: </p>
-<% if @user.section.employee %>
-  Employee,
-<% end %>
-<% if @user.section.brand %>
-  Brand,
-<% end %>
-<% if @user.section.category %>
-  Category,
-<% end %>
-<% if @user.section.item %>
-  Item,
-<% end %>
-<% if @user.section.storage %>
-  Storage,
-<% end %>
-<% if @user.section.issue %>
-  Issue
-<% end %>
+<div class="jumbotron issue-index">
+  <h3>User Details</h3>
+  <p>Name: <%= @user.name %></p>
+  <p>Email: <%= @user.email %></p>
+  <p>Has access to: </p>
+  <span>
+    <% if @user.section.employee %>
+      Employee Section,
+    <% end %>
+    <% if @user.section.brand %>
+      Brand Section,
+    <% end %>
+    <% if @user.section.category %>
+      Category Section,
+    <% end %>
+    <% if @user.section.item %>
+      Item Section,
+    <% end %>
+    <% if @user.section.storage %>
+      Storage Section,
+    <% end %>
+    <% if @user.section.issue %>
+      Issue Section
+    <% end %>
+  <span>
 </div>

@@ -1,10 +1,11 @@
 <%= render 'links' %>
 <h3>View All Items </h3>
 <%= render 'shared/flash' %>
-<%= link_to "assign item to employee",new_employees_item_path, class:"btn btn-default" %>
+<%= link_to "Assign Item To Employee",new_employees_item_path, class:"btn btn-default" %>
 <table class="table table-striped">
   <thead class="thead-light">
     <tr>
+    <th>Id</th>
       <th scope="col">Brand</th>
       <th scope="col">Category</th>
        <th scope="col">Item</th>
@@ -12,8 +13,9 @@
     </tr>
   </thead>
   <tbody>
-     <% @items.each do |item| %>
+     <% @items.each_with_index do |item, index| %>
        <tr>
+       <td><%= link_to index+1, item %></td>
         <td><%= item.brand.name %></td>
         <td><%= item.category.name %></td>
         <td>
@@ -22,7 +24,6 @@
            <span class="text-warning">(item not been assigned to storage yet)</span>
           <% end%>
         </td>
-        <td><%= link_to "See details",item, class:"btn btn-primary" %></td>
         <td><%= link_to "Edit Item",edit_item_path(item), class:"btn btn-primary" %></td>
         <td><%= button_to "Delete",item,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
       </tr>

@@ -1,0 +1,36 @@
+<div class="form">
+ <div class="jumbotron">
+    <%= form_with model:@user do |f| %>
+    <%= render 'shared/errors', object: f.object %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name , class:"form-control"%>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email,class:"form-control" %>
+    </div>
+     <h3 class="">Select Access for Respective User</h3>
+    <div class="">
+      <div class="col-lg-3">
+        <%= f.label :employee %>
+        <%= f.select :employee,[['yes',true], ['no',false]], class:"form-control" %>
+        <%= f.label :brand %>
+      <%= f.select :brand,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <div class="col-lg-3">
+        <%= f.label :category %>
+        <%= f.select :category,[['yes',true], ['no',false]], class:"form-control" %>
+        <%= f.label :item %>
+      <%= f.select :item,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <div class="col-lg-3">
+        <%= f.label :storage %>
+        <%= f.select :storage,[['yes',true], ['no',false]], class:"form-control" %>
+        <%= f.label :issue %>
+      <%= f.select :issue,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    </div>
+    <% end %>
+  </div>
+</div>

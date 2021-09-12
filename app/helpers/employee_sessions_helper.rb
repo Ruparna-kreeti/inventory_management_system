@@ -1,6 +1,8 @@
 module EmployeeSessionsHelper
   def log_in_employee employee
-    session[:employee_id]=employee.id
+    if employee.status
+      session[:employee_id]=employee.id
+    end
   end
 
   def current_employee

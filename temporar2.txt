@@ -1,0 +1,40 @@
+<div class="form">
+  <div class="jumbotron">
+    <%= form_with model:@user do |f| %>
+     <%= render 'shared/errors', object: f.object %>
+     <div>
+      <%= f.label :name %>
+      <%= f.text_field :name , class:"form-control"%>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email,class:"form-control" %>
+    </div>
+    <h3 class="text-center">Add Accesses for user</h3>
+    <div>
+    <div>
+    <%= f.label :employee %>
+    <%= f.select :employee,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <div>
+    <%= f.label :brand %>
+    <%= f.select :brand,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <div>
+    <%= f.label :category %>
+    <%= f.select :category,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <div>
+    <%= f.label :item %>
+    <%= f.select :item,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <div>
+    <%= f.label :storage %>
+    <%= f.select :storage,[['yes',true], ['no',false]], class:"form-control" %>
+    </div>
+    <%= f.label :issue %>
+    <%= f.select :issue,[['yes',true], ['no',false]], class:"form-control" %><br/><br/>
+    <%= f.submit yield(:button_text), class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

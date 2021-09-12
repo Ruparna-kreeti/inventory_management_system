@@ -1,9 +1,13 @@
-<%= form_with(model:@issue,url:[@employee,@issue]) do|f| %>
-  <%= render 'shared/errors',object: f.object %>
-  <% options = options_from_collection_for_select(@employee.items, 'id','item_fullname') %>
-  <%= f.label :issue_for_item %>
-  <%= f.select :item_id,  options %><br/><br/>
-  <%= f.label :detail %><br>
-  <%=f.text_area :detail,class: "form-control"  %><br/>
-  <%=f.submit yield(:button_text), class:'btn btn-primary' %>
-<% end %>
+<div class="form">
+<div class="jumbotron">
+  <%= form_with(model:@issue,url:[@employee,@issue]) do|f| %>
+    <%= render 'shared/errors',object: f.object %>
+    <% options = options_from_collection_for_select(@employee.items, 'id','item_fullname') %>
+    <%= f.label :issue_for_item %><span class="required">*</span>
+    <%= f.select :item_id,  options %><br/><br/>
+    <%= f.label :detail %><span class="required">*</span>
+    <%=f.text_area :detail,class: "form-control"  %><br/>
+    <%=f.submit yield(:button_text), class:'btn btn-primary' %>
+  <% end %>
+</div>
+</div>

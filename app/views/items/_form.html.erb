@@ -1,21 +1,32 @@
-<div class="row">
-  <div class=" col-6 form-group">
+<div class="form">
+  <div class="jumbotron">
     <%= form_with model: @item do |f| %>
       <%= render 'shared/errors', object: f.object %>
-      <%= f.label :name %>
-      <%= f.text_field :name.downcase, class:"form-control mt-10",required: true %>
-      <%= f.label :brand_id,"Select brand" %>
-      <% options = options_from_collection_for_select(@brands, 'id', 'name') %>
-      <%= f.select :brand_id,  options %><br/>
-      <%= f.label :category_id, "Select Category" %>
-      <% options = options_from_collection_for_select(@categories, 'id', 'name') %>
-      <%= f.select :category_id,  options %><br/>
-      <%= f.label :notes %>
-       <%= f.text_field :notes, class:"form-control mt-10",required: true %>
-      <%= f.label :buffer_quantity,"Required Buffer" %>
-      <%= f.number_field :buffer_quantity, class:"form-control mt-10", required: true %>
+      <%= f.label :name %><span class="required">*</span>
+      <%= f.text_field :name.downcase, class:"form-control",required: true %>
+      <%= f.label :brand_id,"Select brand" %><span class="required">*</span>
+      <div>
+        <%= f.select(:brand_id) do %>
+          <%= content_tag(:option, 'Select Brand', value: nil) %>
+          <% @brands.each do |l| %>
+          <%= content_tag(:option, l.name, value: l.id) %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= f.label :category_id, "Select Category" %><span class="required">*</span>
+       <%= f.select(:category_id) do %>
+        <%= content_tag(:option, 'Select Category', value: nil) %>
+        <% @categories.each do |l| %>
+         <%= content_tag(:option, l.name, value: l.id) %>
+        <% end %>
+      <% end %>
+      <%= f.label :notes %><span class="required">*</span>
+       <%= f.text_field :notes, class:"form-control",required: true %>
+      <%= f.label :buffer_quantity,"Required Buffer" %><span class="required">*</span>
+      <%= f.number_field :buffer_quantity, class:"form-control", required: true %>
       <%= f.label :file,"Add Document" %>
       <%= f.file_field :file,accept:".png,.jpg,.doc,.pdf,.docx" %>
+      <br/>
       <%= f.submit yield(:button_text), class:"btn btn-primary" %>
     <% end %>
   </div>
