@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user.password="password"
     @section=@user.build_section(section_params)
     if @user.save && @section.save
+      AccountMailer.with(user: @user).new_user_email.deliver_now
       redirect_to @user, flash: { success: "User created Successfully" }
     else
       render 'new'

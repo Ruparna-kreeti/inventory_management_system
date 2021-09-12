@@ -23,6 +23,7 @@ class EmployeesController < ApplicationController
   def create
     @employee=Employee.new(employee_params)
     if @employee.save
+      AccountMailer.with(user: @employee).new_user_email.deliver_now
       redirect_to employees_path, flash: { success: "Employee created Successfully" }
     else
       render 'new'
