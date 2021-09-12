@@ -22,9 +22,6 @@ body {
 .hidden {
   display: none;
 }
-.name-lowercase {
-  text-transform: lowercase;
-}
 .dropdown-toggle {
   padding-bottom: 2px;
   margin-left: 2px;
