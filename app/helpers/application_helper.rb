@@ -1,14 +1,15 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
-  def check_employee_association object
-    check_if_employee_exists=true
+# helper contains method for checking if employee contains item
+module ApplicationHelper
+  def check_employee_association(object)
+    check_if_employee_exists = true
     object.items.each do |item|
-      if !item.employees.empty?
-        check_if_employee_exists=false
+      unless item.employees.empty?
+        check_if_employee_exists = false
         break
       end
     end
-    return check_if_employee_exists
+    check_if_employee_exists
   end
-
 end

@@ -1,0 +1,6 @@
+test_item:
+  brand: test
+  category: test_category
+  name: test item
+  notes: use properly
+  buffer_quantity: 2

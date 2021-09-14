@@ -5,7 +5,9 @@
       <%= f.label :employee_id,"Select employee email: " %><span class="required">*</span>
       <% options = options_from_collection_for_select(@employees, 'id', 'email') %>
       <%= f.select :employee_id,  options %><br/><br/>
-      <%= f.label :item_id,"Select Item: " %><span class="required">*</span>
+      <%= f.label :item_id do %>
+        Select Item<span class="required">*</span>
+      <% end %>
       <% options = options_from_collection_for_select(@items, 'id','item_fullname') %>
       <%= f.select :item_id,  options %><br/><br/>
       <%= f.label :status,"Status: " %><span class="required">*</span>

@@ -3,25 +3,25 @@
     <%= form_with model: @item do |f| %>
       <%= render 'shared/errors', object: f.object %>
       <%= f.label :name %><span class="required">*</span>
-      <%= f.text_field :name.downcase, class:"form-control",required: true %>
+      <%= f.text_field :name.downcase, class:"form-control",required: true,minlength: 3 %>
       <%= f.label :brand_id,"Select brand" %><span class="required">*</span>
       <div>
         <%= f.select(:brand_id) do %>
           <%= content_tag(:option, 'Select Brand', value: nil) %>
-          <% @brands.each do |l| %>
-          <%= content_tag(:option, l.name, value: l.id) %>
+            <% @brands.each do |l| %>
+            <%= content_tag(:option, l.name, value: l.id) %>
           <% end %>
         <% end %>
       </div>
       <%= f.label :category_id, "Select Category" %><span class="required">*</span>
-       <%= f.select(:category_id) do %>
+      <%= f.select(:category_id) do %>
         <%= content_tag(:option, 'Select Category', value: nil) %>
         <% @categories.each do |l| %>
-         <%= content_tag(:option, l.name, value: l.id) %>
+          <%= content_tag(:option, l.name, value: l.id) %>
         <% end %>
       <% end %>
       <%= f.label :notes %><span class="required">*</span>
-       <%= f.text_field :notes, class:"form-control",required: true %>
+      <%= f.text_field :notes, class:"form-control",required: true,minlength: 4 %>
       <%= f.label :buffer_quantity,"Required Buffer" %><span class="required">*</span>
       <%= f.number_field :buffer_quantity, class:"form-control", required: true %>
       <%= f.label :file,"Add Document" %>

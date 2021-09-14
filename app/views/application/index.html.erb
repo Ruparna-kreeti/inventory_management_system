@@ -1,14 +1,14 @@
 <%= render 'shared/flash' %>
 <div class="home">
-<div class="texts">
-  <h1>INVENTORY MANAGEMENT</h1>
-  <% if user_logged_in %>
-    <p>Select the navigation Links to achieve your desired work</p>
-  <% elsif employee_logged_in %>
-    <p>Click on your profile to continue </p>
-  <% else %>
-    <p>Manage your inventory at a few clicks</p>
-  <% end %>
-</div>
-<img src="/assets/home.svg" class="colg-lg-4">
+  <div class="texts">
+    <h1>INVENTORY MANAGEMENT</h1>
+    <% if user_logged_in %>
+      <p>Select the navigation Links to achieve your desired work</p>
+    <% elsif employee_logged_in %>
+      <p>Click on your profile to continue </p>
+    <% else %>
+      <p>Manage your inventory at a few clicks</p>
+    <% end %>
+  </div>
+  <img src="/assets/home.svg" class="colg-lg-4">
 </div>

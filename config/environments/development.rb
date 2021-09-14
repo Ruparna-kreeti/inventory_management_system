@@ -1,5 +1,8 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
 
+require 'active_support/core_ext/integer/time'
+
+# rubocop:disable Metrics/BlockLength
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -75,16 +78,16 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  host ='localhost:3000' #replace with your own url
-  config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000', protocol: 'http' }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :user_name            => ENV['GMAILUSERNAME'],
-  :password             => ENV['PASSWORD'],
-  :authentication       => "plain",
-  :enable_starttls_auto => true
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: ENV['GMAILUSERNAME'],
+    password: ENV['PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
 end
+# rubocop:enable Metrics/BlockLength

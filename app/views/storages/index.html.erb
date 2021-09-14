@@ -11,11 +11,11 @@
     </tr>
   </thead>
   <tbody>
-     <% @storages.each do |storage| %>
-       <tr>
+    <% @storages.each do |storage| %>
+      <tr>
         <td>
           <% if storage.quantity < 1 %>
-            <span class="high h4">*</span>
+            <span class="high h4">***</span>
           <% elsif storage.quantity < storage.item.buffer_quantity %>
             <span class="medium h4">*</span>
           <% end %>

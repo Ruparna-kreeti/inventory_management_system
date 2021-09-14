@@ -2,31 +2,35 @@
   <div class="jumbotron">
     <%= form_with model:@user do |f| %>
       <%= render 'shared/errors', object: f.object %>
-      <%= f.label :name,class:'form-label' %><span class="required">*</span>
-      <%= f.text_field :name , class:"form-control"%>
-      <%= f.label :email %><span class="required">*</span>
+      <%= f.label :name,class:'form-label' do %>
+        Name<span class="required">*</span>
+      <% end %>
+      <%= f.text_field :name , class:"form-control", minlength:3 %>
+      <%= f.label :email do %>
+        Email<span class="required">*</span>
+      <% end %>
       <%= f.email_field :email,class:"form-control" %>
       <div class="user-access-form">
-      <h3>Add Access To Section</h3>
+        <h3>Add Access To Section</h3>
         <table class="table">
           <tbody>
             <tr>
-            <td><%= f.label :employee %></td>
-            <td><%= f.select :employee,[['Yes',true], ['No',false]], class:"form-control" %></td>
-            <td> <%= f.label :brand %><td>
-            <td><%= f.select :brand,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td><%= f.label :employee %></td>
+              <td><%= f.select :employee,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td> <%= f.label :brand %><td>
+              <td><%= f.select :brand,[['Yes',true], ['No',false]], class:"form-control" %></td>
             </tr>
             <tr>
-            <td><%= f.label :category %></td>
-            <td><%= f.select :category,[['Yes',true], ['No',false]], class:"form-control" %></td>
-            <td> <%= f.label :item %><td>
-            <td><%= f.select :item,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td><%= f.label :category %></td>
+              <td><%= f.select :category,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td> <%= f.label :item %><td>
+              <td><%= f.select :item,[['Yes',true], ['No',false]], class:"form-control" %></td>
             </tr>
             <tr>
-            <td><%= f.label :storage %></td>
-            <td><%= f.select :storage,[['Yes',true], ['No',false]], class:"form-control" %></td>
-            <td> <%= f.label :issue %><td>
-            <td><%= f.select :issue,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td><%= f.label :storage %></td>
+              <td><%= f.select :storage,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td> <%= f.label :issue %><td>
+              <td><%= f.select :issue,[['Yes',true], ['No',false]], class:"form-control" %></td>
             </tr>
           </tbody>
         </table>

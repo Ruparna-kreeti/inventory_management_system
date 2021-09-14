@@ -4,8 +4,10 @@
       <% unless f.object.nil? %>
         <%=render 'shared/errors',object: f.object %>
       <% end %>
-      <%=f.label :name %><span class="required">*</span>
-      <%= f.text_field :name, class:"form-control input-sm" %>
+      <%=f.label :name do %>
+        Name<span class="required">*</span>
+      <% end %>
+      <%= f.text_field :name, class:"form-control input-sm",minlength: 3 %>
       <br/>
       <%= f.submit yield(:button_text),class:"btn btn-primary" %>
     <% end %>

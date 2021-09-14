@@ -1,0 +1,4 @@
+store:
+  item: items(:test_item)
+  quantity: 2
+  procurement_date: 11/11/2020

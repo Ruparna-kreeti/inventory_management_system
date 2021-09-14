@@ -6,28 +6,28 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
-       <th scope="col">Status</th>
-       <th scope="col">Items</th>
+      <th scope="col">Status</th>
+      <th scope="col">Items</th>
       <th scope="col" colspan="3"></th>
     </tr>
   </thead>
   <tbody>
-     <% @employees.each do |employee| %>
-       <tr>
+    <% @employees.each do |employee| %>
+      <tr>
         <td><%= employee.name %></td>
         <td><%= employee.email %></td>
-        <td><%= employee.get_status %></td>
+        <td><%= employee.employee_status %></td>
         <td>
-          <% if employee.items.empty? %>
-            No items to show
-          <% else %>
-            <% employee.items.each do |item| %>
-              <%= item.name%>,
-            <% end %>
+        <% if employee.items.empty? %>
+          No items to show
+        <% else %>
+          <% employee.items.each do |item| %>
+            <%= item.name%>,
           <% end %>
+        <% end %>
         <td><%= link_to "Edit Employee",edit_employee_path(employee), class:"btn btn-primary" %></td>
         <td><%= link_to "Delete",employee,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
       </tr>        
-      <% end %>
+    <% end %>
   </tbody>
 </table>

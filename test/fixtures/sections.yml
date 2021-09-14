@@ -1,0 +1,17 @@
+admin_section:
+  employee: true
+  brand: true
+  category: true
+  item: true
+  storage: true
+  issue: true
+  user: michael
+
+no_access:
+  employee: false
+  brand: false
+  category: false
+  item: false
+  storage: false
+  issue: false
+  user: archer

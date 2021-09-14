@@ -9,8 +9,8 @@
     </tr>
   </thead>
   <tbody>
-     <% @categories.each do |category| %>
-       <tr>
+    <% @categories.each do |category| %>
+      <tr>
         <td><%= category.name %></td>
         <td><%= link_to "Edit Category",edit_category_path(category),class:"btn btn-primary" %></td>
         <td><%= link_to "Delete Category", category,method: :delete, data:{confirm:"are you sure?"},class:"btn btn-danger" %></td>

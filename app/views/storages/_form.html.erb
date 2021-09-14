@@ -1,7 +1,7 @@
 <div class="form">
   <div class="jumbotron">
     <%= form_with model: @storage do |f| %>
-       <%= render 'shared/errors', object: f.object %>
+      <%= render 'shared/errors', object: f.object %>
       <%= f.label :item %><span class="required">*</span>
       <% options = options_from_collection_for_select(@items, 'id','item_fullname') %>
       <%= f.select :item_id,  options %>

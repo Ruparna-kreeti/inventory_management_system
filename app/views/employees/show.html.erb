@@ -3,7 +3,7 @@
 <h2 class="text-center font-weight-bold">Employee Details</h2>
 <p class="text-center">Name: <%= @employee.name %></p>
 <p class="text-center">Email: <%= @employee.email %></p>
-<p class="text-center">Status: <%= @employee.get_status %></p>
+<p class="text-center">Status: <%= @employee.employee_status %></p>
 </div>
 <% if employee_logged_in %>
   <%= link_to "Assign Issue",new_employee_issue_url(@employee), class:"btn btn-danger" %>
@@ -26,7 +26,7 @@
           <td><%= assigned.item.brand.name %></td>
           <td><%= assigned.item.category.name %></td>
           <td><%= assigned.item.name %></td>
-          <td><%= assigned.get_status %></td> 
+          <td><%= assigned.item_status %></td> 
         </tr>
       <% end %>
     <% else %>

@@ -1,13 +1,13 @@
-module UserSessionsHelper
+# frozen_string_literal: true
 
-  def log_in_user user
-    session[:user_id]=user.id
+# helper for user sessions method
+module UserSessionsHelper
+  def log_in_user(user)
+    session[:user_id] = user.id
   end
 
   def current_user
-    if session[:user_id]
-      @current_user||=User.find(session[:user_id])
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def user_logged_in
@@ -15,7 +15,6 @@ module UserSessionsHelper
   end
 
   def user_section
-    @section||=current_user.section
+    @user_section ||= current_user.section
   end
-
 end
