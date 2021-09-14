@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# rubocop:disable Metrics/ClassLength
 class EmployeesControllerTest < ActionController::TestCase
   def setup
     @user = users(:michael)
@@ -30,6 +31,14 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test 'should redirect destroy when not logged in' do
+    assert_no_difference 'Employee.count' do
+      delete :destroy, params: { id: @employee.id }
+    end
+    assert_not flash.empty?
+    assert_redirected_to root_path
+  end
+
   test 'cannot access employees when logged in as invalid user' do
     session[:user_id] = @other_user.id
     get :index
@@ -49,6 +58,13 @@ class EmployeesControllerTest < ActionController::TestCase
     get :edit, params: { id: @employee.id }
     assert_not flash.empty?
     assert_redirected_to root_path
+  end
+
+  test 'invalid user cannot delete employee' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @employee.id }
+    assert_not flash.empty?
+    assert_redirected_to employees_path
   end
 
   test 'cannot access employees when logged in as employee' do
@@ -90,6 +106,13 @@ class EmployeesControllerTest < ActionController::TestCase
     assert flash.empty?
   end
 
+  test 'valid user can delete employee' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @employee.id }
+    assert_not flash.empty?
+    assert_redirected_to employees_path
+  end
+
   test 'employee should access his profile' do
     session[:employee_id] = @employee.id
     get :show, params: { id: @employee.id }
@@ -103,3 +126,4 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 end
+# rubocop:enable Metrics/ClassLength

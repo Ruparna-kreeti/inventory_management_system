@@ -86,4 +86,11 @@ class ItemsControllerTest < ActionController::TestCase
     get :edit, params: { id: @item.id }
     assert flash.empty?
   end
+
+  test 'valid user can delete item' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @item.id }
+    assert_not flash.empty?
+    assert_redirected_to items_path
+  end
 end

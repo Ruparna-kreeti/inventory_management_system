@@ -90,4 +90,11 @@ class CategoriesControllerTest < ActionController::TestCase
     get :edit, params: { id: @category.id }
     assert flash.empty?
   end
+
+  test 'valid user can delete category' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @category.id }
+    assert_not flash.empty?
+    assert_redirected_to categories_path
+  end
 end

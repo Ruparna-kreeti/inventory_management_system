@@ -3,7 +3,6 @@
 # user sessions controller manages the user login session
 class UserSessionsController < ApplicationController
   before_action :check_no_logins, only: [:new]
-  before_action :check_correct_logout, only: [:destroy]
 
   def new; end
 
@@ -28,10 +27,6 @@ class UserSessionsController < ApplicationController
 
   def check_no_logins
     redirect_to root_path, flash: { danger: 'you are already logged in' } if user_logged_in || employee_logged_in
-  end
-
-  def check_correct_logout
-    redirect_to root_path, flash: { danger: 'you are not logged in as a main user' } unless user_logged_in
   end
 
   def save_respective_user(object, access_token)

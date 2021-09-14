@@ -66,4 +66,11 @@ class UsersControllerTest < ActionController::TestCase
     get :edit, params: { id: @other_user.id }
     assert flash.empty?
   end
+
+  test 'valid user can delete user' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @other_user.id }
+    assert_not flash.empty?
+    assert_redirected_to users_path
+  end
 end

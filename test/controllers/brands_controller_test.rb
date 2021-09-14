@@ -90,4 +90,11 @@ class BrandsControllerTest < ActionController::TestCase
     get :edit, params: { id: @brand.id }
     assert flash.empty?
   end
+
+  test 'valid user can delete brand' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @brand.id }
+    assert_not flash.empty?
+    assert_redirected_to brands_path
+  end
 end

@@ -32,6 +32,14 @@ class IssuesControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test 'cannot delete issues when not logged in' do
+    assert_no_difference 'Issue.count' do
+      delete :destroy, params: { id: @issue.id }
+    end
+    assert_not flash.empty?
+    assert_redirected_to root_path
+  end
+
   test 'edit issue path should redirect to root path when logged in as invalid user' do
     session[:user_id] = @other_user.id
     get :edit, params: { id: @issue.id }
@@ -51,5 +59,18 @@ class IssuesControllerTest < ActionController::TestCase
     get :edit, params: { id: @issue.id }
     assert_not flash.empty?
     assert_redirected_to root_path
+  end
+
+  test 'access all issues when logged in as valid user' do
+    session[:user_id] = @user.id
+    get :index
+    assert flash.empty?
+  end
+
+  test 'valid user can delete issue' do
+    session[:user_id] = @user.id
+    delete :destroy, params: { id: @issue.id }
+    assert_not flash.empty?
+    assert_redirected_to issues_path
   end
 end
