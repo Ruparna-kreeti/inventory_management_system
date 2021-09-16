@@ -16,10 +16,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  def email_downcase
-    self.email = email.downcase
-  end
-
   def self.from_omniauth(auth)
     return unless User.find_by(email: auth.info.email)
 
@@ -28,5 +24,11 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password_digest = digest(new_token)
     end
+  end
+
+  private
+
+  def email_downcase
+    self.email = email.downcase
   end
 end

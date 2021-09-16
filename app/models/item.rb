@@ -2,7 +2,7 @@
 
 # model for item
 class Item < ApplicationRecord
-  before_save :name_downcase
+  before_save :name_titleize
 
   belongs_to :brand
   belongs_to :category
@@ -20,11 +20,13 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: %i[brand_id category_id], message: 'Item already present' }
 
-  def name_downcase
-    name.downcase!
-  end
-
   def item_fullname
     "#{brand.name} #{category.name} #{name}"
+  end
+
+  private
+
+  def name_titleize
+    self.name = name.titleize
   end
 end

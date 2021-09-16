@@ -6,5 +6,5 @@ class Brand < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
-  default_scope { order('name ASC') }
+  scope :order_by_name, -> { order('name ASC') }
 end

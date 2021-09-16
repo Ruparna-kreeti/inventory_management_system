@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   before_action :check_category_access, only: %i[index new create edit update destroy]
 
   def index
-    @categories = Category.all
+    @categories = Category.order_by_name.all
   end
 
   def new

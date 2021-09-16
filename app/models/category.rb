@@ -2,14 +2,16 @@
 
 # model for category
 class Category < ApplicationRecord
-  before_save :name_downcase
+  before_save :name_titleize
 
   has_many :items, dependent: :destroy
   validates :name, presence: true, uniqueness: { case_sensitive: false }, format: /\A([a-zA-Z]|[a-zA-Z][. ])+\z/
 
-  default_scope { order('name ASC') }
+  scope :order_by_name, -> { order('name ASC') }
 
-  def name_downcase
-    self.name = name.downcase
+  private
+
+  def name_titleize
+    self.name = name.titleize
   end
 end

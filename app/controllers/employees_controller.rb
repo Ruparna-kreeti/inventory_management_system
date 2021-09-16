@@ -7,11 +7,11 @@ class EmployeesController < ApplicationController
   before_action :check_correct_issue_access, only: [:view_issues]
 
   def index
-    @employees = Employee.all
+    @employees = Employee.includes(:items).all
   end
 
   def view_issues
-    @issues = Issue.where(employee_id: params[:employee_id])
+    @issues = Issue.where(employee_id: params[:employee_id]).includes(:item)
   end
 
   def show

@@ -12,6 +12,8 @@ class Storage < ApplicationRecord
   validates :quantity, presence: true
   validates :procurement_date, presence: true
 
+  private
+
   def convert_date
     procurement_date <= Time.now && procurement_date >= Time.now.ago(20.years)
   rescue ArgumentError

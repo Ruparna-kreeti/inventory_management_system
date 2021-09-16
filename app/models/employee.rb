@@ -12,10 +12,6 @@ class Employee < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: /\w+@\w+\.{1}[a-zA-Z]{2,}/
   validates :status, inclusion: { in: [true, false] }
 
-  def email_downcase
-    self.email = email.downcase
-  end
-
   def employee_status
     status ? 'Active' : 'Inactive'
   end
@@ -27,5 +23,11 @@ class Employee < ApplicationRecord
       user.name = auth.info.name
       user.email = auth.info.email
     end
+  end
+
+  private
+
+  def email_downcase
+    self.email = email.downcase
   end
 end

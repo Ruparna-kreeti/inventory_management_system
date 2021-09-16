@@ -5,7 +5,7 @@ class BrandsController < ApplicationController
   before_action :check_brand_access, only: %i[index new create edit update destroy]
 
   def index
-    @brands = Brand.all
+    @brands = Brand.order_by_name.all
   end
 
   def new

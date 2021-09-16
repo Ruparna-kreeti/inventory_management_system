@@ -9,14 +9,16 @@ class EmployeesItem < ApplicationRecord
 
   validates :item_id, presence: true, uniqueness: { scope: [:employee_id], message: 'already assigned to employee' }
 
+  def item_status
+    status ? 'working' : 'not working'
+  end
+
+  private
+
   def validate_item_storage
     return if item.storage&.quantity&.positive?
 
     errors.add :item_id, 'not present or more quantity need to be stacked in storage'
-  end
-
-  def item_status
-    status ? 'working' : 'not working'
   end
 
   def decrement_storage_quantity

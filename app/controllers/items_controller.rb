@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   before_action :access_category_and_brand
 
   def index
-    @items = Item.all
+    @items = Item.includes(:brand,:category).all
   end
 
   def show
