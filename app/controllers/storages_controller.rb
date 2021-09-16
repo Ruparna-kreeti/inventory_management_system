@@ -7,7 +7,7 @@ class StoragesController < ApplicationController
   before_action :access_items
 
   def index
-    @storages = Storage.all
+    @storages = Storage.includes(item: %i[brand category]).all
   end
 
   def new
