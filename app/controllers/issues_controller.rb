@@ -8,11 +8,11 @@ class IssuesController < ApplicationController
   before_action :access_items
 
   def index
-    @issues = Issue.all
+    @issues = Issue.includes(:employee, item: %i[brand category]).all
   end
 
   def new
-    @employee = Employee.find_by(id: params[:employee_id])
+    @employee = Employee.includes(items: %i[brand category]).find_by(id: params[:employee_id])
     @issue = @employee.issues.new
   end
 
