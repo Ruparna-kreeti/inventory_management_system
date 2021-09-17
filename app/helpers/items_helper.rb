@@ -3,7 +3,7 @@
 # helper contains item and admin notification
 module ItemsHelper
   def access_items
-    @items = Item.all
+    @items = Item.includes(:brand, :category).all
   end
 
   def admin_notifications(item)

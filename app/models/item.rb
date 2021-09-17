@@ -18,7 +18,8 @@ class Item < ApplicationRecord
   validates :notes, presence: true, length: { maximum: 250 }
   validates :buffer_quantity, presence: true
 
-  validates :name, presence: true, uniqueness: { scope: %i[brand_id category_id], message: 'Item already present' }
+  validates :name, presence: true,
+                   uniqueness: { scope: %i[brand_id category_id], case_sensitive: false, message: 'Item present' }
 
   def item_fullname
     "#{brand.name} #{category.name} #{name}"

@@ -6,12 +6,12 @@ class ItemsController < ApplicationController
   before_action :access_category_and_brand
 
   def index
-    @items = Item.includes(:brand,:category).all
+    @items = Item.includes(:brand, :category, :storage).all
   end
 
   def show
     @item = Item.find(params[:id])
-    @assigned_employees = EmployeesItem.where(item_id: @item.id)
+    @assigned_employees = EmployeesItem.where(item_id: @item.id).includes(:employee)
   end
 
   def new

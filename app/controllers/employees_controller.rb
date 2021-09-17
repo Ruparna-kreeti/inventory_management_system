@@ -11,12 +11,12 @@ class EmployeesController < ApplicationController
   end
 
   def view_issues
-    @issues = Issue.where(employee_id: params[:employee_id]).includes(:item)
+    @issues = Issue.where(employee_id: params[:employee_id]).includes(item: %i[brand category])
   end
 
   def show
     @employee = Employee.find(params[:id])
-    @assigned_items = EmployeesItem.where(employee_id: @employee.id)
+    @assigned_items = EmployeesItem.where(employee_id: @employee.id).includes(item: %i[brand category])
   end
 
   def new

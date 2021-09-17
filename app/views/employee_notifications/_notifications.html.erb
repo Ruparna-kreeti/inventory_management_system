@@ -1,4 +1,4 @@
- <% current_employee.employee_notifications.recent.each do |notifications| %>
+ <% current_employee.employee_notifications.includes(issue: [item: [:brand,:category]]).recent.each do |notifications| %>
   <li>
     <%= link_to notifications.content+' for item '+notifications.issue.item.item_fullname,employee_view_issues_url(current_employee) %>
   </li>

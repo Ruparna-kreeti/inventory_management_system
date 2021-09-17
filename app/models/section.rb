@@ -2,5 +2,5 @@
 
 # model for section of user
 class Section < ApplicationRecord
-  belongs_to :user, touch: true
+  belongs_to :user
 end
