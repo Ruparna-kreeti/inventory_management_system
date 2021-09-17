@@ -90,4 +90,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 end
+
 # rubocop:enable Metrics/BlockLength
