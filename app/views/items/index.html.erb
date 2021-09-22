@@ -25,7 +25,9 @@
           <% end %>
         </td>
         <td><%= link_to "Edit Item",edit_item_path(item), class:"btn btn-primary" %></td>
-        <td><%= button_to "Delete",item,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
+        <% if !item.employees.exists? %>
+          <td><%= button_to "Delete",item,method: :delete,data: {confirm: "Are You sure?"},class:"btn btn-danger" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

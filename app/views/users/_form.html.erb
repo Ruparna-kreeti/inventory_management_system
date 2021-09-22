@@ -16,21 +16,21 @@
           <tbody>
             <tr>
               <td><%= f.label :employee %></td>
-              <td><%= f.select :employee,[['Yes',true], ['No',false]], class:"form-control" %></td>
-              <td> <%= f.label :brand %><td>
-              <td><%= f.select :brand,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td><%= f.select :employee,options_for_select([['Yes',true],['No',false]],f.object.section.employee), class:"form-control" %></td>
+              <td><%= f.label :brand %></td>
+              <td><%= f.select :brand,options_for_select([['Yes',true],['No',false]],f.object.section.brand), class:"form-control" %></td>
             </tr>
             <tr>
               <td><%= f.label :category %></td>
-              <td><%= f.select :category,[['Yes',true], ['No',false]], class:"form-control" %></td>
-              <td> <%= f.label :item %><td>
-              <td><%= f.select :item,[['Yes',true], ['No',false]], class:"form-control" %></td>
+              <td><%= f.select :category,options_for_select([['Yes',true],['No',false]],f.object.section.category), class:"form-control" %></td>
+              <td><%= f.label :item %></td>
+              <td><%= f.select :item,options_for_select([['Yes',true],['No',false]],f.object.section.item), class:"form-control" %></td>
             </tr>
             <tr>
-              <td><%= f.label :storage %></td>
-              <td><%= f.select :storage,[['Yes',true], ['No',false]], class:"form-control" %></td>
-              <td> <%= f.label :issue %><td>
-              <td><%= f.select :issue,[['Yes',true], ['No',false]], class:"form-control" %></td>
+               <td><%= f.label :storage %></td>
+              <td><%= f.select :storage,options_for_select([['Yes',true],['No',false]],f.object.section.storage), class:"form-control" %></td>
+              <td><%= f.label :issue %></td>
+              <td><%= f.select :issue,options_for_select([['Yes',true],['No',false]],f.object.section.issue), class:"form-control" %></td>
             </tr>
           </tbody>
         </table>

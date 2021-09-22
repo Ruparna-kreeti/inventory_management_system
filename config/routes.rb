@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   end
 
   resources :issues, only: %i[index edit update destroy]
-  resources :items
+  resources :items do
+    member do
+      delete :delete_attachment
+    end
+  end
   resources :storages
   resources :employees_items
   resources :user_sessions, only: %i[new destroy]

@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.password = 'password'
-    @section = @user.build_section(section_params)
-    if @user.save && @section.save
+    @user.build_section(section_params)
+    if @user.save # && @section.save
       AccountMailer.with(user: @user).new_user_email.deliver_now
       redirect_to @user, flash: { success: 'User created Successfully' }
     else
@@ -31,12 +31,13 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @user.section
   end
 
   def update
     @user = User.find(params[:id])
-    @section = @user.section
-    if @user.update(user_params) && @section.update(section_params)
+    @user.build_section(section_params)
+    if @user.update(user_params) # && @section.update(section_params)
       redirect_to @user, flash: { success: 'User updated successfully' }
     else
       render 'edit'

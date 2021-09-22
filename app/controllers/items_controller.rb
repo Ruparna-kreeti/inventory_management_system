@@ -42,6 +42,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def delete_attachment
+    @image = Item.find(params[:id]).file
+    # @image = ActiveStorage::Blob.find(params[:id])
+    @image.purge
+    redirect_back(fallback_location: root_path)
+  end
+
   def destroy
     if Item.find(params[:id]).employees.count < 1
       Item.find(params[:id]).destroy

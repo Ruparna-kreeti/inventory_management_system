@@ -17,7 +17,7 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @employee = Employee.find_by(id: params[:employee_id])
+    @employee = Employee.includes(items: %i[brand category]).find_by(id: params[:employee_id])
     @issue = @employee.issues.new(issue_params)
     if @issue.save
       redirect_to employee_path(@employee), flash: { success: 'Issue added successfully' }
@@ -33,8 +33,7 @@ class IssuesController < ApplicationController
   def update
     @issue = Issue.find(params[:id])
     if @issue.update(edit_issue_params)
-      EmployeeNotification.create(employee: @issue.employee, issue: @issue, content: 'Your issue is resolved for ')
-      redirect_to issues_path, flash: { success: 'Issue resolved' }
+      check_issue_resolve @issue
     else
       render 'edit'
     end
@@ -69,5 +68,16 @@ class IssuesController < ApplicationController
     return if employee_logged_in && @employee.id == current_employee.id
 
     redirect_to root_path, flash: { danger: 'Not allowed to access' }
+  end
+
+  def check_issue_resolve(issue)
+    if issue.is_solved
+      EmployeeNotification.create(employee: @issue.employee, issue: @issue, content: 'Issue is resolved ')
+      redirect_to issues_path, flash: { success: 'Issue resolved' }
+    else
+      EmployeeNotification.create(employee: @issue.employee, issue: @issue,
+                                  content: 'Issue is updated to unresolved ')
+      redirect_to issues_path, flash: { warning: 'Issue updated but not resolved' }
+    end
   end
 end

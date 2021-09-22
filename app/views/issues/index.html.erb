@@ -6,11 +6,16 @@
 <% else %>
   <% @issues.each do |issue| %>
     <div class="jumbotron">
-      <h2><%= issue.employee.name %> added a issue for</h3>
+      <h2>
+        <% if !issue.is_solved %>
+          <span class="high">*</span>
+        <% end %>
+        <%= issue.employee.name %> added a issue for
+    </h2>
       <h3>Item <%= issue.item.item_fullname %></h3>
       <%= render 'issue' ,issue: issue %>
       <%= link_to "Verify",edit_issue_path(issue), class:"btn btn-primary" %>
-      <%= link_to "Delete",issue ,method: :delete,data: {confirm: "are you sure?"}, class:"btn btn-primary" %>
+      <%= link_to "Delete",issue ,method: :delete,data: {confirm: "are you sure?"}, class:"btn btn-primary" if issue.is_solved %>
     </div>
   <% end %>
 <% end %>
