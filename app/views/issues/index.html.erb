@@ -15,7 +15,7 @@
       <h3>Item <%= issue.item.item_fullname %></h3>
       <%= render 'issue' ,issue: issue %>
       <%= link_to "Verify",edit_issue_path(issue), class:"btn btn-primary" %>
-      <%= link_to "Delete",issue ,method: :delete,data: {confirm: "are you sure?"}, class:"btn btn-primary" if issue.is_solved %>
+      <%= link_to "Delete",issue ,method: :delete,data: {confirm: "are you sure?"}, class:"btn btn-primary" %>
     </div>
   <% end %>
 <% end %>
